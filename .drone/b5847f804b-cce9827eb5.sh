@@ -7,7 +7,7 @@ export TRAVIS_OS_NAME=${DRONE_JOB_OS_NAME:-linux}
 export VCS_COMMIT_ID=$DRONE_COMMIT
 export GIT_COMMIT=$DRONE_COMMIT
 export DRONE_CURRENT_BUILD_DIR=$(pwd)
-export PATH=~/.local/bin:$PATH
+export PATH=~/.local/bin:/usr/local/bin:$PATH
 
 echo '==================================> BEFORE_INSTALL'
 
@@ -32,7 +32,7 @@ echo '==================================> BEFORE_SCRIPT'
 
 . $DRONE_CURRENT_BUILD_DIR/.drone/before-script.sh
 
-echo '==================================> COMPILE'
+echo '==================================> SCRIPT'
 
 if  [ -n "${COVERITY_SCAN_NOTIFICATION_EMAIL}" -a \( "$DRONE_BRANCH" = "develop" -o "$DRONE_BRANCH" = "master" \) -a "$DRONE_BUILD_EVENT" = "push" ] ; then
 cd $BOOST_ROOT/libs/$SELF
